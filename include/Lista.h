@@ -16,6 +16,7 @@ class Lista
         int ObternElementos() const;
         int BUSCAR(int id, int ini, int fim);
         int REMOVER(int id);
+        void Imprimir() const;
 
 
     protected:
