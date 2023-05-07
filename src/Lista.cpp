@@ -83,6 +83,7 @@ int Lista::INSERIR(Elemento E1)
         cout << "Esse funcionario ja esta na lista" <<endl;
         return 0;
     } else {
+        cout << "T: " << verifica_pos << endl;
         AbreEspaco(verifica_pos);
         lista[verifica_pos] = E1;
         nElementos = nElementos + 1;
@@ -95,7 +96,7 @@ int Lista::BUSCAR(int id, int ini, int fim)
 {
     if (ini >= fim) { //nao encontrou o funcionario, mas a posição a ser adicionado
 
-        return -1;
+        return ini;
     } else {
 
         int meio = (ini + fim) / 2;
@@ -141,6 +142,15 @@ int Lista::REMOVER(int id)
     }
 }
 
+void Lista::Imprimir() const
+{
+    std::cout << "{ ";
+    for (int i = 0; i < nElementos - 1; i++)
+        std::cout << lista[i].Obterid() << ", ";
+    if (nElementos > 0)
+        std::cout << lista[nElementos - 1].Obterid();
+    std::cout << " } " << std::endl;
+}
 
 
 
