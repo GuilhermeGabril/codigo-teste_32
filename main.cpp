@@ -13,10 +13,18 @@ int main(){
     Lista lista;
 
     lista.INSERIR(E1);
+    lista.Imprimir();
+
     lista.INSERIR(E2);
+    lista.Imprimir();
+
     lista.INSERIR(E3);
+    lista.Imprimir();
+
 
     lista.BUSCAR(E1.Obterid(), 0, lista.ObternElementos());
+
+
 
 
 

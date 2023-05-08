@@ -1,5 +1,5 @@
-#include "Lista.h"
 #include "Elemento.h"
+#include "Lista.h"
 #include<iostream>
 #define TAM_MAX 100
 
@@ -9,12 +9,10 @@ Lista::Lista()
 {
     //ctor
 }
-
 Lista::~Lista()
 {
     //dtor
 }
-
 int Lista::ObternElementos() const
 {
     return nElementos;
@@ -25,40 +23,26 @@ int Lista::ListaCheia() const
         return 1;
     }
     return 0;
-
 }
-
  Lista::AbreEspaco(int verifica_pos)
 {
-    for (int i = nElementos; i > verifica_pos; i--) {//comeÁa do final da lista, colocando cada termo um a frente atÈ a posiÁ„o onde ser· inserido o novo funcionario
+    for (int i = nElementos; i > verifica_pos; i--) {//come√ßa do final da lista, colocando cada termo um a frente at√© a posi√ß√£o onde ser√° inserido o novo funcionario
         lista[i] = lista[i-1];
-
     }
-
 }
-
-
 int Lista::ListaVazia() const
 {
     if(nElementos == 0){
         return 1;
     }
     return 0;
-
 }
-
  Lista::FechaEspaco(int verifica_pos)
 {
     for (int i = verifica_pos; i < nElementos - 1; i++){
         lista[i] = lista[i+1];
-
     }
-
     }
-
-
-
-
 int Lista::INSERIR(Elemento E1)
 {
     if(ListaCheia() == 1){
@@ -70,19 +54,19 @@ int Lista::INSERIR(Elemento E1)
         cout<<"Adicionado"<<endl;
         return 1;
     }
-
     int verifica_pos = BUSCAR(E1.Obterid(), 0, ObternElementos());
-
-    if (verifica_pos >= nElementos) { // id maior que todos que j· est„o na lista, ou seja, vai pra ˙ltima posiÁ„o
+    if (verifica_pos >= nElementos) { // id maior que todos que j√° est√£o na lista, ou seja, vai pra √∫ltima posi√ß√£o
         lista[nElementos] = E1;
         nElementos = nElementos + 1;
         cout<<"Adicionado"<<endl;
         return 1;
     }
-    if (lista[verifica_pos].Obterid() == E1.Obterid()) { //funcion·rio j· esta na lista
+    if (lista[verifica_pos].Obterid() == E1.Obterid()) { //funcionÔøΩrio jÔøΩ esta na lista
         cout << "Esse funcionario ja esta na lista" <<endl;
         return 0;
+
     } else {
+        cout << "T: " << verifica_pos << endl;
         AbreEspaco(verifica_pos);
         lista[verifica_pos] = E1;
         nElementos = nElementos + 1;
@@ -90,36 +74,27 @@ int Lista::INSERIR(Elemento E1)
         return 1;
     }
 }
-
 int Lista::BUSCAR(int id, int ini, int fim)
 {
-    if (ini >= fim) { //nao encontrou o funcionario, mas a posiÁ„o a ser adicionado
+    if (ini >= fim) { //nao encontrou o funcionario, mas a posiÔøΩÔøΩo a ser adicionado
 
-        return -1;
+    return ini;
     } else {
 
         int meio = (ini + fim) / 2;
 
-        cout<<"id:"<<id<<endl;
-        cout<<"meio:"<<meio<<endl;
-        cout<<"valor na posicao meio: "<<lista[meio].Obterid()<<endl;
-
-        if (lista[meio].Obterid() == id) { //encontrou o funcion·rio
-            cout << "Funcion·rio encontrado na posiÁ„o " << meio << endl;
+        if (lista[meio].Obterid() == id) { //encontrou o funcion√°rio
+            cout << "Funcion√°rio encontrado na posi√ß√£o " << meio << endl;
             return meio;
         }
-
-        if (id > lista[meio].Obterid()) { //recursividade pra dividir ao meio e buscar novamente sÛ que do meio pra frente
+        if (id > lista[meio].Obterid()) { //recursividade pra dividir ao meio e buscar novamente s√≥ que do meio pra frente
             return BUSCAR(id, meio + 1, fim);
         }
-
-        if (id < lista[meio].Obterid()) { //recursividade pra dividir ao meio e buscar novamente sÛ que do meio pra tr·s
+        if (id < lista[meio].Obterid()) { //recursividade pra dividir ao meio e buscar novamente s√≥ que do meio pra tr√°s
             return BUSCAR(id, ini, meio);
         }
     }
 }
-
-
 int Lista::REMOVER(int id)
 {
     if(ListaVazia()== 1){
@@ -129,8 +104,8 @@ int Lista::REMOVER(int id)
     else{
         int n_Elementos = ObternElementos();
         int verifica_pos = BUSCAR(id, 0, n_Elementos);
-        if (lista[verifica_pos].Obterid() == id) { //encontrou o funcion·rio a ser removido
-            FechaEspaco(verifica_pos); //reorganiza a lista com a remoÁ„o
+        if (lista[verifica_pos].Obterid() == id) { //encontrou o funcion√°rio a ser removido
+            FechaEspaco(verifica_pos); //reorganiza a lista com a remo√ß√£o
             nElementos = nElementos - 1;
             cout<<"Removido da lista com sucesso\n"<<endl;
             return 1;
@@ -140,8 +115,14 @@ int Lista::REMOVER(int id)
         }
     }
 }
-
-
-
+void Lista::Imprimir() const
+{
+    cout << "{ ";
+    for (int i = 0; i < nElementos - 1; i++)
+        cout << lista[i].Obterid() << ", ";
+    if (nElementos > 0)
+        cout << lista[nElementos - 1].Obterid();
+        cout << " } " << endl;
+}
 
 
